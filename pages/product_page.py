@@ -3,6 +3,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.support.ui import Select
 
 
 class ProductPage(Page):
@@ -15,11 +16,20 @@ class ProductPage(Page):
     MSG_CONFIRM = (By.CSS_SELECTOR, 'div.woocommerce-message div.container.container')
     WISHLIST_SOCIAL =(By.CSS_SELECTOR, 'div.yith_wcwl_wishlist_footer div.social-icons a')
 
+    SORT_BOX = (By.CSS_SELECTOR, '.orderby')
+    PAGINATION = (By.CSS_SELECTOR, 'div.container nav.woocommerce-pagination ul.links li')
+
     def open_lap_category_page(self):
         self.open_url('product-category/laptop/')
 
     def open_phn_category_page(self):
         self.open_url('product-category/phone/')
+
+    def open_whole_prod_page(self):
+        self.open_url('shop/')
+
+    def open_sort_popular_page(self):
+        self.open_url('shop/?orderby=popularity')
 
     def add_prod_wishlist(self):
         self.hover_to_prod_img()
@@ -82,4 +92,22 @@ class ProductPage(Page):
         # print(text1.is_displayed())
         self.verify_element_text(expected_text, *self.MSG_CONFIRM)
 
+    def select_sort_popular(self):
+        sort_box = self.find_element(*self.SORT_BOX)
+        select = Select(sort_box)
+        select.select_by_value('popularity')
 
+    def navigate_pages(self):
+        next_pages = self.find_elements(*self.PAGINATION)
+        for page in range(len(next_pages) - 1):
+            next_pages = self.find_elements(*self.PAGINATION)
+            next_pages[page].click()
+
+    def select_sort_default(self):
+        sort_box = self.find_element(*self.SORT_BOX)
+        select = Select(sort_box)
+        select.select_by_value('menu_order')
+        sleep(2)
+
+    def verify_popular_page_opened(self):
+        self.verify_url_contains_query('https://gettop.us/shop/?orderby=popularity')

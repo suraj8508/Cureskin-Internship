@@ -47,4 +47,4 @@ class Page:
 
     def verify_url_contains_query(self, query):
         self.wait.until(EC.url_contains(query))
-        # assert query in self.driver.current_url, f'{query} not in {self.driver.current_url}'
+        assert query in self.driver.current_url, f'{query} not in {self.driver.current_url}'
