@@ -16,9 +16,9 @@ def open_lap_category_page(context):
     context.app.product_page.open_lap_category_page()
 
 
-# @given('Open Laptop Category Page')
-# def open_lap_category_page(context):
-#     context.app.product_page.open_lap_category_page()
+@given('Open Accessories Category Page')
+def open_access_category_page(context):
+    context.app.product_page.open_access_category_page()
 
 
 @given('Open the whole product page')
@@ -44,6 +44,21 @@ def open_wishlist_page(context):
 @when('User selects the sort by popularity')
 def select_sort_popular(context):
     context.app.product_page.select_sort_popular()
+
+
+@when('User sets the same price for maximum and minimum range and click filter button')
+def right_slider_to_left(context):
+    context.app.product_page.right_slider_to_left()
+
+
+@then('User get the message "No products were found matching your selection."')
+def verify_no_prod_msg(context):
+    context.app.product_page.verify_no_prod_msg()
+
+
+@then("User resets the filter to view all the products")
+def right_slider_to_right(context):
+    context.app.product_page.right_slider_to_right()
 
 
 @then('User can click through sorted pages')

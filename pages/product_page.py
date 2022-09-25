@@ -19,8 +19,16 @@ class ProductPage(Page):
     SORT_BOX = (By.CSS_SELECTOR, '.orderby')
     PAGINATION = (By.CSS_SELECTOR, 'div.container nav.woocommerce-pagination ul.links li')
 
+    PRICE_FILTER_SLIDER = (By.CSS_SELECTOR, 'span[style="left: 100%;"]')
+    FILTER_BTN = (By.CSS_SELECTOR, 'div.price_slider_amount button.button')
+    FILTER_RESULT_MSG = (By.CSS_SELECTOR, 'main#main div.shop-container p.woocommerce-info')
+    PRICE_FILTER_SLIDER2 = (By.XPATH, '//*[@id="woocommerce_price_filter-9"]/form/div/div[1]/span[2]')
+
     def open_lap_category_page(self):
         self.open_url('product-category/laptop/')
+
+    def open_access_category_page(self):
+        self.open_url('product-category/accessories/')
 
     def open_phn_category_page(self):
         self.open_url('product-category/phone/')
@@ -107,7 +115,33 @@ class ProductPage(Page):
         sort_box = self.find_element(*self.SORT_BOX)
         select = Select(sort_box)
         select.select_by_value('menu_order')
-        sleep(2)
+        sleep(4)
 
     def verify_popular_page_opened(self):
         self.verify_url_contains_query('https://gettop.us/shop/?orderby=popularity')
+
+    def right_slider_to_left(self):
+        slider = self.find_element(*self.PRICE_FILTER_SLIDER)
+        filter_btn = self.find_element(*self.FILTER_BTN)
+        actions = ActionChains(self.driver)
+        actions.drag_and_drop_by_offset(slider, -300, 0)
+        sleep(3)
+        actions.click(filter_btn)
+        actions.perform()
+        sleep(5)
+
+    def verify_no_prod_msg(self):
+        expected_text = "No products were found matching your selection."
+        # text1 = self.find_element(*self.FILTER_RESULT_MSG)
+        # print(text1.is_displayed())
+        self.verify_element_text(expected_text, *self.FILTER_RESULT_MSG)
+
+    def right_slider_to_right(self):
+        slider = self.find_element(*self.PRICE_FILTER_SLIDER2)
+        filter_btn = self.find_element(*self.FILTER_BTN)
+        actions = ActionChains(self.driver)
+        actions.drag_and_drop_by_offset(slider, 300, 0)
+        sleep(3)
+        actions.click(filter_btn)
+        actions.perform()
+        sleep(3)
