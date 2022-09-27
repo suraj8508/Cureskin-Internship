@@ -121,8 +121,9 @@ class ProductPage(Page):
         self.verify_url_contains_query('https://gettop.us/shop/?orderby=popularity')
 
     def right_slider_to_left(self):
-        slider = self.find_element(*self.PRICE_FILTER_SLIDER)
-        filter_btn = self.find_element(*self.FILTER_BTN)
+        slider = self.wait_for_element_appear(*self.PRICE_FILTER_SLIDER)
+        filter_btn = self.wait_for_element_appear(*self.FILTER_BTN)
+
         actions = ActionChains(self.driver)
         actions.drag_and_drop_by_offset(slider, -300, 0)
         sleep(3)
@@ -134,11 +135,12 @@ class ProductPage(Page):
         expected_text = "No products were found matching your selection."
         # text1 = self.find_element(*self.FILTER_RESULT_MSG)
         # print(text1.is_displayed())
+        sleep(2)
         self.verify_element_text(expected_text, *self.FILTER_RESULT_MSG)
 
     def right_slider_to_right(self):
-        slider = self.find_element(*self.PRICE_FILTER_SLIDER2)
-        filter_btn = self.find_element(*self.FILTER_BTN)
+        slider = self.wait_for_element_appear(*self.PRICE_FILTER_SLIDER2)
+        filter_btn = self.wait_for_element_appear(*self.FILTER_BTN)
         actions = ActionChains(self.driver)
         actions.drag_and_drop_by_offset(slider, 300, 0)
         sleep(3)
