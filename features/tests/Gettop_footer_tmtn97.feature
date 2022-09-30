@@ -1,7 +1,7 @@
-# Created by sbt at 9/26/22
+# Created by sbt at 9/28/22
 Feature: Testing the Gettop Footer Content and Links
 
-  Scenario: User can View the Footer content and links
+  Scenario: Scenario: User can View the Footer content and links
     Given open Gettop main page
     Then User can view Best Selling, Latest, Top Rated categories
     Then User can view all products in the footer have price, name, star-rating

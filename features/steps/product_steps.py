@@ -15,6 +15,10 @@ PRODUCT_NAME = (By.CSS_SELECTOR, 'div.box-text p.name')
 def open_lap_category_page(context):
     context.app.product_page.open_lap_category_page()
 
+@given("Open Phone Category Page")
+def open_phn_category_page(context):
+    context.app.product_page.open_phn_category_page()
+
 
 @given('Open Accessories Category Page')
 def open_access_category_page(context):

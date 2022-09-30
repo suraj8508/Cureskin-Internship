@@ -4,22 +4,53 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from app.application import Application
+from selenium.webdriver.support.events import EventFiringWebDriver
+
+bs_user = 'surajbabu_y0SqJM'
+bs_key = 'uEqTUDyjrH4zaeTP3w5S'
 
 
-def browser_init(context):
+def browser_init(context, test_name):
     """
     :param context: Behave context
     """
-    c = webdriver.ChromeOptions()
-    c.add_argument("--incognito")
-    context.driver = webdriver.Chrome(executable_path="./chromedriver", options=c)
+    # c = webdriver.ChromeOptions()
+    # c.add_argument("--incognito")
+    # context.driver = webdriver.Chrome(executable_path="./chromedriver", options=c)
     # context.browser = webdriver.Safari()
     # context.browser = webdriver.Firefox(executable_path="/Users/sbt/Desktop/Gettop_QA_Intern/geckodriver")
+    # context.driver = webdriver.Firefox(executable_path="./geckodriver")
 
     # Headless Mode Settings
     # options = webdriver.ChromeOptions()
     # options.add_argument("--headless")
+    # options.add_argument('--window-size=1920,1080')
     # context.driver = webdriver.Chrome(executable_path="./chromedriver", options=options)
+
+    # Mobile - run tests on mobile web browser
+    # options = webdriver.ChromeOptions()
+    # mobile_emulation = {"deviceName": "Nexus 5"}
+    # options.add_experimental_option("mobileEmulation", mobile_emulation)
+    # context.driver = webdriver.Chrome(chrome_options=options)
+
+    ### EventFiringWebDriver - log file ###
+    ### for drivers ###
+    # context.driver = EventFiringWebDriver(webdriver.Chrome(), MyListener())
+    # for headless mode ###
+    # context.driver = EventFiringWebDriver(webdriver.Chrome(chrome_options = options), MyListener())
+
+    # for browerstack ###
+    desired_cap = {
+        'bstack:options': {
+            "os": "Windows",
+            "osVersion": "11",
+            "local": "false",
+        },
+        "browserName": "Firefox",
+        "browserVersion": "102.0",
+    }
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
@@ -29,7 +60,7 @@ def browser_init(context):
 
 def before_scenario(context, scenario):
     print('\nStarted scenario: ', scenario.name)
-    browser_init(context)
+    browser_init(context, scenario.name)
 
 
 def before_step(context, step):

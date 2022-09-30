@@ -3,6 +3,7 @@ from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.common.keys import Keys
 
 
 class Header(Page):
@@ -84,19 +85,47 @@ class Header(Page):
         prod_qview = self.find_elements(*self.QVIEW)
 
         for i in range(len(prod_qview)):
+            if i > 2:
+            # if i % 3 == 0 and i != 0:
+                self.driver.execute_script("window.scrollTo(0, 600);")
+                sleep(2)
             qview_prod = prod_qview[i]
             actions = ActionChains(self.driver)
             actions.move_to_element(qview_prod)
             actions.perform()
             qview_prod.click()
-            # self.wait_for_element_click(qview_prod)
+                # self.wait_for_element_click(qview_prod)
             sleep(2)
             self.wait_for_element_click(*self.QVIEW_X)
+            # if qview_prod == prod_qview[3]:
+            # # self.driver.execute_script("arguments[0].scrollIntoView();", qview_prod[3])
+            #     self.find_element(*self.QVIEW).send_keys(Keys.PAGE_DOWN)
+
+    # def verify_add_prod_qview(self):
+    #     prod_view = self.find_elements(*self.QVIEW)
+    #
+    #     for i in range(len(prod_view)):
+    #         if i > 2:
+    #             self.driver.execute_script("window.scrollTo(0, 500);")
+    #             sleep(2)
+    #         prod_add = self.find_element(*self.QVIEW)[i]
+    #         actions = ActionChains(self.driver)
+    #         actions.move_to_element(prod_add)
+    #         actions.perform()
+    #         prod_add.click()
+    #         sleep(2)
+    #
+    #         self.find_element(*self.QVIEW_ADCART)
+    #         sleep(2)
+    #         self.click(*self.QVIEW_ADCART)
 
     def verify_add_prod_qview(self):
         prod_qview = self.find_elements(*self.QVIEW)
 
         for i in range(len(prod_qview)):
+            if i > 2:
+                self.driver.execute_script("window.scrollTo(0, 600);")
+                sleep(3)
             prod_add = self.find_elements(*self.QVIEW)[i]
             actions = ActionChains(self.driver)
             actions.move_to_element(prod_add)
@@ -109,6 +138,7 @@ class Header(Page):
             self.find_element(*self.QVIEW_ADCART)
             sleep(2)
             self.click(*self.QVIEW_ADCART)
+
 
 
 
