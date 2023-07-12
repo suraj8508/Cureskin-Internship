@@ -1,6 +1,7 @@
 import allure
 from allure_commons.types import AttachmentType
 from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from app.application import Application
@@ -28,10 +29,11 @@ def browser_init(context, test_name):
     # context.driver = webdriver.Chrome(executable_path="./chromedriver", options=options)
 
     # Mobile - run tests on mobile web browser
-    # options = webdriver.ChromeOptions()
-    # mobile_emulation = {"deviceName": "Nexus 5"}
-    # options.add_experimental_option("mobileEmulation", mobile_emulation)
-    # context.driver = webdriver.Chrome(chrome_options=options)
+    service = Service("./chromedriver")
+    options = webdriver.ChromeOptions()
+    mobile_emulation = {"deviceName": "Pixel 5"}
+    options.add_experimental_option("mobileEmulation", mobile_emulation)
+    context.driver = webdriver.Chrome(chrome_options=options, service=service)
 
     ### EventFiringWebDriver - log file ###
     ### for drivers ###
@@ -40,17 +42,17 @@ def browser_init(context, test_name):
     # context.driver = EventFiringWebDriver(webdriver.Chrome(chrome_options = options), MyListener())
 
     # for browerstack ###
-    desired_cap = {
-        'bstack:options': {
-            "os": "Windows",
-            "osVersion": "11",
-            "local": "false",
-        },
-        "browserName": "Firefox",
-        "browserVersion": "102.0",
-    }
-    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
+    # desired_cap = {
+    #     'bstack:options': {
+    #         "os": "Windows",
+    #         "osVersion": "11",
+    #         "local": "false",
+    #     },
+    #     "browserName": "Firefox",
+    #     "browserVersion": "102.0",
+    # }
+    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    # context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
