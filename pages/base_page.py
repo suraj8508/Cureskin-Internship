@@ -7,7 +7,7 @@ class Page:
     def __init__(self, driver):
         self.driver = driver
         self.wait = WebDriverWait(self.driver, 15)
-        self.base_url = 'https://gettop.us/'
+        self.base_url = 'https://shop.cureskin.com'
 
     def open_url(self, end_url=''):
         self.driver.get(f'{self.base_url}{end_url}')

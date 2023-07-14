@@ -19,8 +19,8 @@ def browser_init(context, test_name):
     # c.add_argument("--incognito")
     # context.driver = webdriver.Chrome(executable_path="./chromedriver", options=c)
     # context.browser = webdriver.Safari()
-    # context.browser = webdriver.Firefox(executable_path="/Users/sbt/Desktop/Gettop_QA_Intern/geckodriver")
-    # context.driver = webdriver.Firefox(executable_path="./geckodriver")
+    context.browser = webdriver.Firefox(executable_path="/Users/sbt/Desktop/Gettop_QA_Intern/geckodriver")
+    context.driver = webdriver.Firefox(executable_path="./geckodriver")
 
     # Headless Mode Settings
     # options = webdriver.ChromeOptions()
@@ -29,11 +29,11 @@ def browser_init(context, test_name):
     # context.driver = webdriver.Chrome(executable_path="./chromedriver", options=options)
 
     # Mobile - run tests on mobile web browser
-    service = Service("./chromedriver")
-    options = webdriver.ChromeOptions()
-    mobile_emulation = {"deviceName": "Pixel 5"}
-    options.add_experimental_option("mobileEmulation", mobile_emulation)
-    context.driver = webdriver.Chrome(chrome_options=options, service=service)
+    # service = Service("./chromedriver")
+    # options = webdriver.ChromeOptions()
+    # mobile_emulation = {"deviceName": "Pixel 5"}
+    # options.add_experimental_option("mobileEmulation", mobile_emulation)
+    # context.driver = webdriver.Chrome(chrome_options=options, service=service)
 
     ### EventFiringWebDriver - log file ###
     ### for drivers ###
