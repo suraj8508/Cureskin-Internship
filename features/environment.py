@@ -15,12 +15,12 @@ def browser_init(context, test_name):
     """
     :param context: Behave context
     """
-    # c = webdriver.ChromeOptions()
-    # c.add_argument("--incognito")
-    # context.driver = webdriver.Chrome(executable_path="./chromedriver", options=c)
+    c = webdriver.ChromeOptions()
+    c.add_argument("--incognito")
+    context.driver = webdriver.Chrome(executable_path="./chromedriver", options=c)
     # context.browser = webdriver.Safari()
-    context.browser = webdriver.Firefox(executable_path="/Users/sbt/Desktop/Gettop_QA_Intern/geckodriver")
-    context.driver = webdriver.Firefox(executable_path="./geckodriver")
+    # context.browser = webdriver.Firefox(executable_path="/Users/sbt/Desktop/Gettop_QA_Intern/geckodriver")
+    # context.driver = webdriver.Firefox(executable_path="./geckodriver")
 
     # Headless Mode Settings
     # options = webdriver.ChromeOptions()
