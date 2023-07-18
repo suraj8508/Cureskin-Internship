@@ -11,11 +11,10 @@ class Header(Page):
     SEARCH_BAR = (By.ID, 'Search-In-Modal')
     CLICK_SEARCH = (By.CSS_SELECTOR, '#predictive-search-option-search-keywords button.button')
 
-    def open_search_bar(self, *locator):
-        self.click(*self.HEADER_SEARCH)
+    def open_search_bar(self):
+        self.wait_for_element_click(*self.HEADER_SEARCH)
 
     def insert_search_word(self, search_word):
         self.input_text(search_word, *self.SEARCH_BAR)
         self.wait_for_element_click(*self.CLICK_SEARCH)
-        # sleep(2)
-        # self.find_element(*self.CLICK_SEARCH).click()
+

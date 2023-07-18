@@ -7,3 +7,4 @@ Feature: Testing the Search Functionality
     And Insert cure in search field and click search
     Then User sees 19 products related to cure
 
+

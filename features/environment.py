@@ -19,14 +19,16 @@ def browser_init(context, test_name):
     # c.add_argument("--incognito")
     # context.driver = webdriver.Chrome(executable_path="./chromedriver", options=c)
     # context.browser = webdriver.Safari()
-    # context.browser = webdriver.Firefox(executable_path="/Users/sbt/Desktop/Gettop_QA_Intern/geckodriver")
-    # context.driver = webdriver.Firefox(executable_path="./geckodriver")
+    f_profile = webdriver.FirefoxProfile()
+    f_profile.set_preference("browser.privatebrowsing.autostart", True)
+    # context.browser = webdriver.Firefox(executable_path="/Users/sbt/Documents/automation/Cureskin-Internship/geckodriver")
+    context.driver = webdriver.Firefox(executable_path="./geckodriver", firefox_profile=f_profile)
 
     # Headless Mode Settings
-    options = webdriver.ChromeOptions()
-    options.add_argument("--headless")
-    options.add_argument('--window-size=1920,1080')
-    context.driver = webdriver.Chrome(executable_path="./chromedriver", options=options)
+    # options = webdriver.ChromeOptions()
+    # options.add_argument("--headless")
+    # options.add_argument('--window-size=1920,1080')
+    # context.driver = webdriver.Chrome(executable_path="./chromedriver", options=options)
 
     # Mobile - run tests on mobile web browser
     # service = Service("./chromedriver")
