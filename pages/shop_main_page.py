@@ -11,4 +11,5 @@ class MainPage(Page):
 
     def open_main_page(self):
         self.open_url()
-        self.click(*self.POP_UP_X)
+        self.wait_for_element_click(*self.POP_UP_X)
+        self.wait_for_element_disappear(*self.POP_UP_X)
