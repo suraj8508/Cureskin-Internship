@@ -50,8 +50,8 @@ def browser_init(context, test_name):
             "osVersion": "11",
             "local": "false",
         },
-        "browserName": "Chrome",
-        "browserVersion": "114.0",
+        "browserName": "Edge",
+        "browserVersion": "latest",
     }
     url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
     context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
