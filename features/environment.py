@@ -15,46 +15,60 @@ def browser_init(context, test_name):
     """
     :param context: Behave context
     """
+    ########### CHROME ##################################################
+    service = Service("/Users/sbt/Documents/automation/Cureskin-Internship/chromedriver_new/chromedriver")
     # c = webdriver.ChromeOptions()
     # c.add_argument("--incognito")
-    # context.driver = webdriver.Chrome(executable_path="./chromedriver", options=c)
-    # context.browser = webdriver.Safari()
-    f_profile = webdriver.FirefoxProfile()
-    f_profile.set_preference("browser.privatebrowsing.autostart", True)
-    # context.browser = webdriver.Firefox(executable_path="/Users/sbt/Documents/automation/Cureskin-Internship/geckodriver")
-    context.driver = webdriver.Firefox(executable_path="./geckodriver", firefox_profile=f_profile)
+    context.driver = webdriver.Chrome(service=service)
+    ######################################################################
 
-    # Headless Mode Settings
+    ########## SAFARI #####################################################
+    # context.driver = webdriver.Safari()
+    #####################################################################
+
+    ########## FIREFOX ####################################################
+    # f_profile = webdriver.FirefoxProfile()
+    # f_profile.set_preference("browser.privatebrowsing.autostart", True)
+    # # context.browser = webdriver.Firefox(executable_path="/Users/sbt/Documents/automation/Cureskin-Internship/geckodriver")
+    # context.driver = webdriver.Firefox(executable_path="./geckodriver", firefox_profile=f_profile)
+    ######################################################################
+
+    ##########  Headless Mode Settings ########################################
     # options = webdriver.ChromeOptions()
     # options.add_argument("--headless")
     # options.add_argument('--window-size=1920,1080')
-    # context.driver = webdriver.Chrome(executable_path="./chromedriver", options=options)
+    # context.driver = webdriver.Chrome(service=service, options=options)
+    ######################################################################
 
+    ########## MOBILE  #####################################################
     # Mobile - run tests on mobile web browser
-    # service = Service("./chromedriver")
+    # service = Service("/Users/sbt/Documents/automation/Cureskin-Internship/chromedriver_new/chromedriver")
     # options = webdriver.ChromeOptions()
     # mobile_emulation = {"deviceName": "Pixel 5"}
     # options.add_experimental_option("mobileEmulation", mobile_emulation)
     # context.driver = webdriver.Chrome(chrome_options=options, service=service)
+    ######################################################################
 
-    ### EventFiringWebDriver - log file ###
+    ##########  EventFiringWebDriver - log file ###################################
     ### for drivers ###
     # context.driver = EventFiringWebDriver(webdriver.Chrome(), MyListener())
     # for headless mode ###
     # context.driver = EventFiringWebDriver(webdriver.Chrome(chrome_options = options), MyListener())
+    ######################################################################
 
-    # for browerstack ###
+    ########## BROWSERSTACK ###############################################
     # desired_cap = {
     #     'bstack:options': {
     #         "os": "Windows",
     #         "osVersion": "11",
     #         "local": "false",
     #     },
-    #     "browserName": "Firefox",
-    #     "browserVersion": "102.0",
+    #     "browserName": "Chrome",
+    #     "browserVersion": "114.0",
     # }
     # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
     # context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
+    #######################################################################
 
     context.driver.maximize_window()
     context.driver.implicitly_wait(4)
