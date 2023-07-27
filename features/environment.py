@@ -34,6 +34,7 @@ def browser_init(context, test_name):
     ######################################################################
 
     ##########  Headless Mode Settings ########################################
+    # Headless Mode Settings
     # options = webdriver.ChromeOptions()
     # options.add_argument("--headless")
     # options.add_argument('--window-size=1920,1080')
