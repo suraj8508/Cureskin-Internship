@@ -10,8 +10,9 @@ class SearchResults(Page):
     PRODUCT_COUNT = (By.ID, 'ProductCount')
 
     def verify_search_results(self, expected_text):
-        self.verify_partial_text(expected_text, *self.PRODUCT_COUNT)
         sleep(2)
+        self.verify_partial_text(expected_text, *self.PRODUCT_COUNT)
+
 
 
 
