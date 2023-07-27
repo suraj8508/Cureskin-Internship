@@ -14,9 +14,20 @@ def open_search_bar(context):
     context.app.header_page.open_search_bar()
 
 
+@when('User opens the search field in mobile')
+def open_search_bar_mob(context):
+    context.app.header_page.open_search_bar_mob()
+
+
 @when('Insert {search_word} in search field and click search')
 def insert_search_word(context, search_word):
     context.app.header_page.insert_search_word(search_word)
+    # context.app.header_page.click_search()
+
+
+@when('Insert {search_word} in mobile search field and click search')
+def insert_search_word(context, search_word):
+    context.app.header_page.mob_insert_search_word(search_word)
     # context.app.header_page.click_search()
 
 
