@@ -42,11 +42,11 @@ def browser_init(context, test_name):
     ################################################################################
 
     ########## Mobile - run tests on mobile web browser ############################
-    service = Service("/Users/sbt/Documents/automation/Cureskin-Internship/chromedriver_new/chromedriver")
-    options = webdriver.ChromeOptions()
-    mobile_emulation = {"deviceName": "Surface Pro 7"}
-    options.add_experimental_option("mobileEmulation", mobile_emulation)
-    context.driver = webdriver.Chrome(chrome_options=options, service=service)
+    # service = Service("/Users/sbt/Documents/automation/Cureskin-Internship/chromedriver_new/chromedriver")
+    # options = webdriver.ChromeOptions()
+    # mobile_emulation = {"deviceName": "Surface Pro 7"}
+    # options.add_experimental_option("mobileEmulation", mobile_emulation)
+    # context.driver = webdriver.Chrome(chrome_options=options, service=service)
     ###############################################################################
 
     ########## EventFiringWebDriver - log file #####################################
@@ -57,17 +57,19 @@ def browser_init(context, test_name):
     ################################################################################
 
     ########## for browerstack #####################################################
-    # desired_cap = {
-    #     'bstack:options': {
-    #         "os": "Windows",
-    #         "osVersion": "11",
-    #         "local": "false",
-    #     },
-    #     "browserName": "Edge",
-    #     "browserVersion": "latest",
-    # }
-    # url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
-    # context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
+    desired_cap = {
+        'bstack:options': {
+            # "os": "Windows",
+            "osVersion": "10.0",
+            "deviceName": "Samsung Galaxy S20",
+
+            "local": "false",
+        },
+        "browserName": "Chrome",
+        # "browserVersion": "latest",
+    }
+    url = f'http://{bs_user}:{bs_key}@hub-cloud.browserstack.com/wd/hub'
+    context.driver = webdriver.Remote(url, desired_capabilities=desired_cap)
     ################################################################################
 
     context.driver.maximize_window()
