@@ -44,7 +44,7 @@ def browser_init(context, test_name):
     ########## Mobile - run tests on mobile web browser ############################
     service = Service("/Users/sbt/Documents/automation/Cureskin-Internship/chromedriver_new/chromedriver")
     options = webdriver.ChromeOptions()
-    mobile_emulation = {"deviceName": "Pixel 5"}
+    mobile_emulation = {"deviceName": "iPhone 12 Pro"}
     options.add_experimental_option("mobileEmulation", mobile_emulation)
     context.driver = webdriver.Chrome(chrome_options=options, service=service)
     ###############################################################################
